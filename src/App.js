@@ -1,23 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Home from './Component/Home/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Registration from './Component/Registration/registration';
+import Dashboard from './Component/Admin/Dashboard';
+import PageNotFound from './Component/PageNotFound/pageNotFound';
+import CreatePost from './Component/Admin/createPost';
+import ShowPost from './Component/Admin/showPost';
 function App() {
+  let token = localStorage.getItem('token')
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <Router>
+          {
+            token ?
+
+              <Routes>
+                <Route path="/dashboard" exact={true} element={<Dashboard />}>
+                  <Route path='create-post' element={<CreatePost/>} />
+                  <Route path='create-post/:id' element={<CreatePost/>} />
+                  <Route path='show-post' element={<ShowPost/>} />
+                </Route>
+              </Routes>
+
+              :
+              <Routes>
+                <Route path="/" exact={true} element={<Home />} />
+                <Route path="/registration" exact={true} element={<Registration />} />
+                <Route path="*" exact={true} element={<PageNotFound/>}></Route>
+              </Routes>
+          }
+
+        </Router>
+
     </div>
   );
 }

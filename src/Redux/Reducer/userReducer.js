@@ -6,7 +6,6 @@ const initialState = {
 
 
 const userReducer = (state=initialState,action) =>{
-
     switch(action.type){
         case SIGN_UP:
             return{
@@ -14,6 +13,7 @@ const userReducer = (state=initialState,action) =>{
                 data:action.payload
             }
             case LOGIN:
+                
                 let token = action.payload.data.token;
                 let userid = action.payload.data.user.id;
                 localStorage.setItem("token",token);

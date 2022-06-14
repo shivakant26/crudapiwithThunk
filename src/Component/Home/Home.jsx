@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux/es/exports";
@@ -11,18 +11,24 @@ const Home = () => {
         formState: { errors }
     } = useForm();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const login_api_result = useSelector((state)=>state.userReducer.login_data);
-    // console.log(33333333,login_api_result);
+    const respone_code = useSelector((state)=>state.userReducer);
+    console.log(33333333,respone_code?.Error);
     const onSubmit = (data) => { 
         let object = { user : data} 
         dispatch(login(object));
-        if(login_api_result.status){
-            alert(`${login_api_result.data.message}`);
-            window.location.href = "/dashboard";
-        }
+      
     };
-
+    useEffect(()=>{
+        if(login_api_result?.status === 200){
+            alert(`${login_api_result?.data?.message}`);
+            window.location.href = "/dashboard";
+        }else{
+            if(respone_code?.Error?.status === 400){
+                alert(`${respone_code?.Error?.data?.errors[0]}`)
+            }
+        }
+    },[login_api_result,respone_code])
     return (
         <>
             <Container>

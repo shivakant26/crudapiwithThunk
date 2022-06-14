@@ -9,6 +9,7 @@ import Dashboard from './Component/Admin/Dashboard';
 import PageNotFound from './Component/PageNotFound/pageNotFound';
 import CreatePost from './Component/Admin/createPost';
 import ShowPost from './Component/Admin/showPost';
+import Profile from './Component/Admin/profile';
 function App() {
   let token = localStorage.getItem('token')
   return (
@@ -23,6 +24,7 @@ function App() {
                   <Route path='create-post' element={<CreatePost/>} />
                   <Route path='create-post/:id' element={<CreatePost/>} />
                   <Route path='show-post' element={<ShowPost/>} />
+                  <Route path='profile' element={<Profile/>} />
                 </Route>
               </Routes>
 

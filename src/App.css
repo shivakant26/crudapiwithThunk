@@ -98,3 +98,41 @@ span a {
 .component-content{
   padding: 40px;
 }
+.profile-page{
+  position: relative;
+}
+.profile-page h2::after {
+  content: "";
+  height: 5px;
+  width: 200px;
+  position: absolute;
+  top: 43px;
+  left: 0px;
+  background-color: burlywood;
+  border-radius: 5px;
+}
+button.trash,button.edit {
+  background: #7e0660;
+  position: relative;
+  border-radius: 50%;
+  color: #fff;
+  margin: 0px 5px;
+  transition: .4s;
+  height: 35px;
+  width: 35px;
+  border:0px;
+}
+button.edit{
+  background-color: #06187e;
+}
+button.edit:hover{
+  background-color: #00a1ff;
+}
+button.trash:hover{
+  background-color: rgb(44, 1, 102);
+}
+svg{
+  position: absolute;
+  top: 9px;
+  left: 9.5px;
+}

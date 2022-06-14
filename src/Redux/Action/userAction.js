@@ -111,3 +111,21 @@ export const single_post = (id) =>{
     };  
    
 }
+export const deletePost = (id) =>{
+    return (dispatch) => {
+        return instance.delete(`/posts/${id}`)
+            .then(data => {
+                dispatch({
+                    type:SINGLE_POST_SHOW,
+                    payload: data
+                })
+            })
+            .catch(error => {
+                dispatch({
+                    type:"ERROR",
+                    payload: error.response
+                })
+            });
+    };  
+   
+}

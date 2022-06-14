@@ -13,13 +13,13 @@ const Home = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const login_api_result = useSelector((state)=>state.userReducer.login_data);
-    console.log(33333333,login_api_result);
+    // console.log(33333333,login_api_result);
     const onSubmit = (data) => { 
         let object = { user : data} 
         dispatch(login(object));
         if(login_api_result.status){
             alert(`${login_api_result.data.message}`);
-            navigate("/dashboard");
+            window.location.href = "/dashboard";
         }
     };
 

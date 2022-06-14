@@ -13,7 +13,7 @@ const Registration = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const result = useSelector((state)=>state.userReducer.data);
-    console.log("result",result.data.message[0])
+    // console.log("result",result.data.message[0])
     const onSubmit = (data) => {
         let object = { user : data}
         dispatch(SignUp(object));

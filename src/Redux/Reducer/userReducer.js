@@ -1,4 +1,4 @@
-import { SIGN_UP , LOGIN , LIST, CREATE_POST , SINGLE_POST_SHOW , UPDATE_POST, ERROR} from "../ActionType";
+import { SIGN_UP , LOGIN , LIST, CREATE_POST , SINGLE_POST_SHOW , UPDATE_POST, DELETE_POST, ERROR} from "../ActionType";
 
 const initialState = {
     data:[]
@@ -38,6 +38,11 @@ const userReducer = (state=initialState,action) =>{
                 single_post:action.payload
             }
             case UPDATE_POST:
+            return{
+                ...state,
+                list:action.payload
+            }
+            case DELETE_POST:
             return{
                 ...state,
                 list:action.payload

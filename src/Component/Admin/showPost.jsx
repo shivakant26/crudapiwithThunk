@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch , useSelector } from "react-redux";
-import { list, single_post } from "../../Redux/Action/userAction";
+import { deletePost, list, single_post } from "../../Redux/Action/userAction";
 import { Table } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 const ShowPost = () =>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const post_list = useSelector((state)=>state?.userReducer?.list?.data?.posts);
-    console.log("post list",post_list);
+    // console.log("post list",post_list);
 
     const edit_post = (id) =>{
         navigate(`../create-post/${id}`);
@@ -15,7 +15,7 @@ const ShowPost = () =>{
 
     }
     const delete_post = (id) =>{
-        console.log("delete",id)
+        dispatch(deletePost(id))
     }
     useEffect(()=>{
         dispatch(list())

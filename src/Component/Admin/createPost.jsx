@@ -9,7 +9,6 @@ const user_id = localStorage.getItem("userid");
 const CreatePost = () => {
     const id = useParams();
     const navigate = useNavigate();
-    console.log("current_id", id)
     const {
         register,
         setValue,
@@ -20,21 +19,21 @@ const CreatePost = () => {
     const dispatch = useDispatch();
     const create_post_data = useSelector((state) => state?.userReducer?.create_post)
     const single_post_show = useSelector((state) => state?.userReducer?.single_post?.data?.post)
-    console.log("single_post_Data", single_post_show);
+    // console.log("single_post_Data", single_post_show);
 
     const onSubmit = (data) => {
         data["user_id"] = user_id;
         let object = { post: data }
-        if (id) {
+        if (single_post_show) {
                 dispatch(update_post(id,data))
         } else {
 
             dispatch(create_post(object));
-            if (create_post_data.status === 200) {
-                alert(`${create_post_data.data.message[0]}`);
+            if (create_post_data?.status === 200) {
+                alert(`${create_post_data?.data?.message[0]}`);
             }
         }
-        navigate("../show-post")
+        navigate("../show-post");
     }
 
     useEffect(() => {
